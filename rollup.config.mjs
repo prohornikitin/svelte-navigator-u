@@ -1,15 +1,17 @@
-import { join } from "path";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import svelte from "rollup-plugin-svelte";
 import babel from "@rollup/plugin-babel";
-import { terser } from "rollup-plugin-terser";
-import rimraf from "rimraf";
-import pkg from "./package.json";
+import terser from "@rollup/plugin-terser";
+import { rimraf } from "rimraf";
+import pkg from "./package.json" assert { type: "json" };
+import path from "path";
+
+const __dirname = path.join(new URL(import.meta.url).pathname, "../");
 
 // eslint-disable-next-line no-console
 console.log("\nCleaning previous build...");
-rimraf.sync(join(__dirname, "../dist"));
+rimraf.sync(path.join(__dirname, "../dist"));
 
 const babelConfig = {
 	babelrc: false,

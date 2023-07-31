@@ -121,14 +121,14 @@
 			</Link>
 			<Blog />
 		</Route>
-		<Route path="dashboard/:username/*" let:params>
+		<Route path="dashboard/:username/*" let:paramsDashboard>
 			<Link data-testid="link-dashboard-article-987" to="articles/987">
 				Article 987
 			</Link>
-			<Route path="/">Hello {params.username}!</Route>
-			<Route path="articles/:articleId" let:params>
+			<Route path="/">Hello {paramsDashboard.username}!</Route>
+			<Route path="articles/:articleId" let:paramsArticles>
 				Article
-				{params.articleId}
+				{paramsArticles.articleId}
 			</Route>
 		</Route>
 

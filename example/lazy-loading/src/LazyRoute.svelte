@@ -7,8 +7,7 @@
 
 	let props;
 	$: {
-		// eslint-disable-next-line no-shadow
-		const { component, ...restProps } = $$props;
+		const { _component, ...restProps } = $$props;
 		props = restProps;
 	}
 </script>

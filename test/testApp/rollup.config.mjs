@@ -1,10 +1,12 @@
 import path from "path";
-import rimraf from "rimraf";
+import { rimraf } from "rimraf";
 import svelte from "rollup-plugin-svelte";
 import babel from "@rollup/plugin-babel";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import css from "rollup-plugin-css-only";
+
+const __dirname = path.join(new URL(import.meta.url).pathname, "../");
 
 rimraf.sync(path.join(__dirname, "public/build"));
 
@@ -31,7 +33,7 @@ export default {
 				[
 					"istanbul",
 					{
-						exclude: ["**/*.spec.js"],
+						exclude: ["**/*.cy.js"],
 						extension: [
 							".js",
 							".cjs",

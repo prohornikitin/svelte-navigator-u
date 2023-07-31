@@ -1,6 +1,7 @@
 {
-	"plugins": ["svelte3", "react"],
-	"extends": ["airbnb"],
+	"parser": "espree",
+	"plugins": ["react", "import"],
+	"extends": ["airbnb", "plugin:import/warnings", "plugin:import/typescript"],
 	"rules": {
 		"quotes": "off",
 		"indent": "off",
@@ -15,7 +16,16 @@
 		"no-plusplus": "off",
 		"no-tabs": "off",
 		"no-mixed-spaces-and-tabs": "off",
-		"linebreak-style": "off"
+		"linebreak-style": "off",
+		"import/no-cycle": "off",
+		"no-promise-executor-return": "off",
+		"no-unused-vars": [
+			"error",
+			{
+				"varsIgnorePattern": "_[a-zA-z]*",
+				"argsIgnorePattern": "_[a-zA-z]*"
+			}
+		]
 	},
 	"env": {
 		"es6": true,
@@ -30,12 +40,19 @@
 		{
 			"files": ["example/**/*"],
 			"rules": {
-				"import/no-unresolved": "off"
+				"import/no-unresolved": "off",
+				"no-promise-executor-return": "off"
 			}
 		},
 		{
 			"files": ["**/*.svelte"],
-			"processor": "svelte3/svelte3",
+			"extends": ["plugin:svelte/recommended"],
+			"parser": "svelte-eslint-parser",
+			"parserOptions": {
+				"ts": "@typescipt-eslint/parser",
+				"js": "espree",
+				"typescipt": "@typescipt-eslint/parser"
+			},
 			"rules": {
 				"import/first": "off",
 				"import/no-duplicates": "off",
@@ -50,7 +67,7 @@
 			}
 		},
 		{
-			"files": ["cypress/**/*"],
+			"files": ["cypress/**/*", "cypress.config.ts"],
 			"plugins": ["cypress"],
 			"extends": ["plugin:cypress/recommended"],
 			"env": {
@@ -78,6 +95,21 @@
 	"settings": {
 		"react": {
 			"version": "16.13"
+		},
+		"import/parsers": {
+			"@typescript-eslint/parser": [".ts", ".tsx"]
+		},
+		"import/resolver": {
+			"typescript": {
+				"alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+
+				// Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
+
+				// Multiple tsconfigs (Useful for monorepos)
+
+				// use a glob pattern
+				"project": "packages/*/tsconfig.json"
+			}
 		}
 	}
 }

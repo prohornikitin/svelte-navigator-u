@@ -1,7 +1,7 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable
 import { createHashHistory } from "history";
 
-function createHashSource(basename) {
+export default function createHashSource(basename) {
 	const history = createHashHistory({ basename });
 	let listeners = [];
 
@@ -39,5 +39,3 @@ function createHashSource(basename) {
 		},
 	};
 }
-
-export default createHashSource;
