@@ -54,7 +54,7 @@
     "cy:start": "npm run cy:build && npm run cy:serve",
     "cy:start:quiet": "npm run cy:build && npm run cy:serve:quiet",
     "cy:run": "cypress run --headless",
-    "test": "npm run test:unit && npm run test:ssr && npm run",
+    "test": "npm run test:unit && npm run test:ssr && npm run test:integ",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "verify-build": "npm run lint && npm test && npm run build",

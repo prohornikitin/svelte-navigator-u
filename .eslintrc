@@ -22,8 +22,8 @@
 		"no-unused-vars": [
 			"error",
 			{
-				"varsIgnorePattern": "_[a-zA-z]*",
-				"argsIgnorePattern": "_[a-zA-z]*"
+				"varsIgnorePattern": "_[a-zA-z_]*",
+				"argsIgnorePattern": "_[a-zA-z_]*"
 			}
 		]
 	},
